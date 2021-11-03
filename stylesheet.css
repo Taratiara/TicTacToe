@@ -1,0 +1,34 @@
+h1, h3{
+    text-align: center;
+}
+
+header{
+    margin-bottom: 50px;
+}
+
+.board{
+    border: 5px black solid;
+    width: 60%;
+    margin: auto;
+}
+
+.row{
+    height: 150px;
+    background-color: palevioletred;
+    display: flex;
+}
+
+.box{
+    width: 33.33%;
+    text-align: center;
+    font-size: 70px;
+    padding-top: 40px;
+}
+
+.row-1, .row-2{
+    border-bottom: 5px black solid;
+}
+
+.col-1, .col-2{
+    border-right: 5px black solid;
+}
