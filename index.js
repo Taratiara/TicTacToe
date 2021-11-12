@@ -4,7 +4,7 @@ var tie = 0;
 var turn = 1;
 
 
-function checkWin(){
+function checkWinX(){
     if ($(".row-1 .box.X").length === 3
      || $(".row-2 .box.X").length === 3
      || $(".row-3 .box.X").length === 3
@@ -17,18 +17,10 @@ function checkWin(){
      || $("#3").hasClass("X")
      &&$("#5").hasClass("X")
      &&$("#7").hasClass("X")){
-        p1Score++;
+        p1Score += 1;
         $("#p1-score").text(p1Score);
-        clearBoard();
+        clear();
     }
-}
-
-function clearBoard(){
-    $(".X").empty();
-    $(".O").empty();
-    $(".X").removeClass("X");
-    $(".O").removeClass("O");
-    turn = 1;
 }
 
 function checkWinO(){
@@ -44,12 +36,28 @@ function checkWinO(){
      || $("#3").hasClass("O")
      &&$("#5").hasClass("O")
      &&$("#7").hasClass("O")){
-        p2Score++;
+        p2Score += 1;
         $("#p2-score").text(p2Score);
-        clearBoard();
+        clear();
     }
 }
 
+function clear(){
+    $(".X").empty();
+    $(".O").empty();
+    $(".X").removeClass("X");
+    $(".O").removeClass("O");
+    turn = 1;
+    $("#turn").text(1);
+}
+
+function checkTie() {
+    if ($(".X").length + $(".O").length === 9){
+        tie++;
+        $("#tie").text(tie);
+        clear();
+    }
+}
 
 $(".box").click(function(){
     if (turn ===1){
@@ -57,7 +65,8 @@ $(".box").click(function(){
         $(this).addClass("X")
         turn = 2;
         $("#turn").text(2);
-        checkWin();
+        checkWinX();
+        checkTie();
     }
     else {
         $(this).text("O")
@@ -65,5 +74,6 @@ $(".box").click(function(){
         turn = 1;
         $("#turn").text(1);
         checkWinO();
+        checkTie();
     }
-});
+})
